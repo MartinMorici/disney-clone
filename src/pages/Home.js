@@ -1,9 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import Slider from '../components/Slider'
 
 function Home() {
   return (
-    <Main>Home</Main>
+    <Main>
+      <Slider/>
+    </Main>
   )
 }
 
