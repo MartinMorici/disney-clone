@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import Slider from '../components/Slider'
+import Slider from '../components/Carousel'
+
 
 function Home() {
   return (
