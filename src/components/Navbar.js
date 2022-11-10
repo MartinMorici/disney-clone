@@ -34,10 +34,7 @@ function Navbar() {
         </ul>
       </Nav>
 
-      <Profile>
-        <span>kuchau</span>
-        <img src='' alt='' />
-      </Profile>
+      <ProfileImg src='./images/cars.png' alt='' />
     </Header>
   );
 }
@@ -46,7 +43,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   height: 72px;
-  background-color: #090b13;
+  /* background-color: #090b13; */
   padding: 0 36px;
 `;
 
@@ -66,12 +63,33 @@ const Nav = styled.nav`
       text-transform: uppercase;
       font-size: 13px;
       letter-spacing: 1.42px;
-      padding: 0 18px;
-
+      margin: 0 18px;
+      cursor: pointer;
+      &:hover span::after{
+        transform: scaleX(1);
+        opacity:1;
+  
+      }
       span {
+        position: relative;
         margin-left: 0.5rem;
         font-weight: 600;
         padding-bottom: 1px;
+        &::after{
+          position: absolute;
+          content: "";
+          height: 2px;
+          width: 100%;
+          background-color: white;
+          bottom: -6px;
+          left: 0;
+          border-radius: 0px 0px 4px 4px;
+          opacity: 0;
+          transform: scaleX(0);
+          transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+          transform-origin: left center;
+          
+        }
       }
       img {
         width: 20px;
@@ -80,9 +98,14 @@ const Nav = styled.nav`
   }
 `;
 
-const Profile = styled.div`
+const ProfileImg = styled.img`
   margin-left: auto;
-  font-size: 15px;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 50%;
+  background-color: #48291c;
+  margin-right: 1rem;
 `;
 
 export default Navbar;
