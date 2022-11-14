@@ -83,6 +83,7 @@ function Carousel() {
 export default Carousel;
 
 const ImgCarousel = styled(Slider)`
+
   margin-top: 1.3rem;
   cursor: pointer;
 
@@ -133,16 +134,19 @@ const ImgCarousel = styled(Slider)`
   }
   div {
     position: relative;
+    &:focus-visible{
+      outline:none;
+    }
   }
 
   .slide-logo {
     position: absolute;
     top: 18%;
-    left: 8%;
+    left: 5%;
     width: 30%;
     transform: translateX(30px);
     opacity: 0;
-    transition: transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 150ms;
+    transition: transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 350ms;
     pointer-events: none;
   }
 
@@ -153,8 +157,8 @@ const ImgCarousel = styled(Slider)`
   .slick-current div div .slide-logo {
     transform: translateX(0);
     opacity: 1;
-    transition: transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 150ms,
-      opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 150ms;
+    transition: transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 350ms,
+      opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 350ms;
   }
 
   .slick-slide > div:first-child {
