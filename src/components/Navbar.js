@@ -1,41 +1,44 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Navbar() {
   return (
-    <Header>
-      <Logo src='./images/logo.svg' alt='Disney Logo' />
-      <Nav>
-        <ul>
-          <li>
-            <img src='./images/home-icon.svg' alt='Icono Home' />
-            <span>Inicio</span>
-          </li>
-          <li>
-            <img src='./images/search-icon.svg' alt='Icono Búsqueda' />
-            <span>Búsqueda</span>
-          </li>
-          <li>
-            <img src='./images/watchlist-icon.svg' alt='Icono Home' />
-            <span>Mi Lista</span>
-          </li>
-          <li>
-            <img src='./images/original-icon.svg' alt='Icono Home' />
-            <span>Originales</span>
-          </li>
-          <li>
-            <img src='./images/movies-icon.svg' alt='Icono Home' />
-            <span>Películas</span>
-          </li>
-          <li>
-            <img src='./images/series-icon.svg' alt='Icono Home' />
-            <span>Series</span>
-          </li>
-        </ul>
-      </Nav>
-
-      <ProfileImg src='./images/cars.png' alt='' />
-    </Header>
+    <>
+      <Header>
+        <Logo src='./images/logo.svg' alt='Disney Logo' />
+        <Nav>
+          <ul>
+            <li>
+              <img src='./images/home-icon.svg' alt='Icono Home' />
+              <span>Inicio</span>
+            </li>
+            <li>
+              <img src='./images/search-icon.svg' alt='Icono Búsqueda' />
+              <span>Búsqueda</span>
+            </li>
+            <li>
+              <img src='./images/watchlist-icon.svg' alt='Icono Home' />
+              <span>Mi Lista</span>
+            </li>
+            <li>
+              <img src='./images/original-icon.svg' alt='Icono Home' />
+              <span>Originales</span>
+            </li>
+            <li>
+              <img src='./images/movies-icon.svg' alt='Icono Home' />
+              <span>Películas</span>
+            </li>
+            <li>
+              <img src='./images/series-icon.svg' alt='Icono Home' />
+              <span>Series</span>
+            </li>
+          </ul>
+        </Nav>
+        <ProfileImg src='./images/cars.png' alt='' />
+      </Header>
+      <Outlet/>
+    </>
   );
 }
 
@@ -43,7 +46,6 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   height: 72px;
-  /* background-color: #090b13; */
   padding: 0 36px;
 `;
 
@@ -53,6 +55,7 @@ const Logo = styled.img`
 `;
 
 const Nav = styled.nav`
+ margin-left: 2rem;
   ul {
     display: flex;
     list-style-type: none;

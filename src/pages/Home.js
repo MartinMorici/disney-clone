@@ -15,7 +15,6 @@ function Home() {
 }
 
 const Main = styled.main`
-  min-height: calc(100vh - 72px);
   padding: 0 calc(3.5vw + 24px);
   
 `

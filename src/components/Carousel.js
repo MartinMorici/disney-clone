@@ -21,60 +21,60 @@ function Carousel() {
         <img
           className='slide-img'
           src='./images/swiper/andor-grande.jpg'
-          alt=''
+          alt='Portada Andor'
         />
         <img
           className='slide-logo'
           src='./images/swiper/andor-logo.png'
-          alt=''
+          alt='Logo Andor'
         />
       </div>
       <div>
         <img
           className='slide-img'
           src='./images/swiper/the-spectacular-spiderman-grande.jpg'
-          alt=''
+          alt='Portada The Spectacular Spiderman'
         />
         <img
           className='slide-logo'
           src='./images/swiper/the-spectacular-spiderman-logo.png'
-          alt=''
+          alt='Logo The Spectacular Spiderman'
         />
       </div>
       <div>
         <img
           className='slide-img'
           src='./images/swiper/leyendas-grande.jpg'
-          alt=''
+          alt='Portada Leyendas'
         />
         <img
           className='slide-logo'
           src='./images/swiper/leyendas-logo.png'
-          alt=''
+          alt='Logo Leyendas'
         />
       </div>
       <div>
         <img
           className='slide-img'
           src='./images/swiper/deadpool-grande.jpg'
-          alt=''
+          alt='Portada Deadpool'
         />
         <img
           className='slide-logo'
           src='./images/swiper/deadpool-logo.png'
-          alt=''
+          alt='Logo Deadpool'
         />
       </div>
       <div>
         <img
           className='slide-img'
           src='./images/swiper/pantera-negra-grande.jpg'
-          alt=''
+          alt='Portada Pantera Negra'
         />
         <img
           className='slide-logo'
           src='./images/swiper/pantera-negra-logo.png'
-          alt=''
+          alt='Logo Pantera Negra'
         />
       </div>
     </ImgCarousel>
