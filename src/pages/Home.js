@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import Slider from '../components/Carousel'
 import Collections from '../components/Collections'
 import Movies from '../components/Movies'
 
 function Home() {
+  useEffect(() => {
+    
+  },[])
+  
   return (
     <Main>
       <Slider/>
