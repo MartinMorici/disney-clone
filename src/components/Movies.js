@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 function Movies() {
   const movies = useSelector((store) => store.movie.movies);
   const isLoading = useSelector((store) => store.movie.isLoading);
@@ -10,7 +11,11 @@ function Movies() {
         <h4>Recomendaciones para ti</h4>
         <div className='peliculas'>
           {movies.slice(0, 10).map((movie) => {
-            return <img key={movie.id} src={movie.thumbnail} alt={movie.name} />;
+            return (
+              <Link key={movie.id} to={`/details/${movie.id}`}>
+                <img draggable='false' src={movie.thumbnail} alt={movie.name} />
+              </Link>
+            );
           })}
         </div>
         {isLoading && (
@@ -23,7 +28,7 @@ function Movies() {
   );
 }
 
-const Section = styled.section`
+export const Section = styled.section`
   margin-bottom: 3rem;
   h4 {
     margin-top: 30px;
@@ -38,6 +43,7 @@ const Section = styled.section`
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 1.3rem;
     img {
+      user-select: none;
       width: 100%;
       height: 100%;
       object-fit: cover;

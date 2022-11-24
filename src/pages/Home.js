@@ -4,11 +4,12 @@ import Slider from '../components/Carousel';
 import Collections from '../components/Collections';
 import Movies from '../components/Movies';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setMovies, setIsLoading } from '../features/movie/movieSlice';
 
 function Home() {
   const dispatch = useDispatch();
+  const movies = useSelector((store) => store.movie.movies )
 
   useEffect(() => {
     dispatch(setIsLoading(true));

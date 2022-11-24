@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Navbar() {
@@ -9,10 +9,12 @@ function Navbar() {
         <Logo src='./images/logo.svg' alt='Disney Logo' />
         <Nav>
           <ul>
-            <li>
-              <img src='./images/home-icon.svg' alt='Icono Home' />
-              <span>Inicio</span>
-            </li>
+            <Link to={'/'}>
+              <li>
+                <img src='./images/home-icon.svg' alt='Icono Home' />
+                <span>Inicio</span>
+              </li>
+            </Link>
             <li>
               <img src='./images/search-icon.svg' alt='Icono Búsqueda' />
               <span>Búsqueda</span>
@@ -25,19 +27,23 @@ function Navbar() {
               <img src='./images/original-icon.svg' alt='Icono Home' />
               <span>Originales</span>
             </li>
-            <li>
-              <img src='./images/movies-icon.svg' alt='Icono Home' />
-              <span>Películas</span>
-            </li>
-            <li>
-              <img src='./images/series-icon.svg' alt='Icono Home' />
-              <span>Series</span>
-            </li>
+            <Link to={'/peliculas'}>
+              <li>
+                <img src='./images/movies-icon.svg' alt='Icono Home' />
+                <span>Películas</span>
+              </li>
+            </Link>
+            <Link to={'/series'}>
+              <li>
+                <img src='./images/series-icon.svg' alt='Icono Home' />
+                <span>Series</span>
+              </li>
+            </Link>
           </ul>
         </Nav>
         <ProfileImg src='./images/cars.png' alt='' />
       </Header>
-      <Outlet/>
+      <Outlet />
     </>
   );
 }
@@ -55,7 +61,7 @@ const Logo = styled.img`
 `;
 
 const Nav = styled.nav`
- margin-left: 2rem;
+  margin-left: 2rem;
   ul {
     display: flex;
     list-style-type: none;
@@ -68,19 +74,18 @@ const Nav = styled.nav`
       letter-spacing: 1.42px;
       margin: 0 18px;
       cursor: pointer;
-      &:hover span::after{
+      &:hover span::after {
         transform: scaleX(1);
-        opacity:1;
-  
+        opacity: 1;
       }
       span {
         position: relative;
         margin-left: 0.5rem;
         font-weight: 600;
         padding-bottom: 1px;
-        &::after{
+        &::after {
           position: absolute;
-          content: "";
+          content: '';
           height: 2px;
           width: 100%;
           background-color: white;
@@ -91,7 +96,6 @@ const Nav = styled.nav`
           transform: scaleX(0);
           transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
           transform-origin: left center;
-          
         }
       }
       img {

@@ -1,20 +1,26 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-
+import {useSelector} from 'react-redux'
 function Details() {
+  let movies = useSelector((store) => store.movie.movies);
+  const {movieId} = useParams()
+  const movie = movies.find((movie) => movie.id === movieId)
+  const {background} = movie;
+
   return (
-    <Main>
+    <Main background={background}>
       <div className='background'></div>
       <img
         className='logo'
-        src='./images/swiper/andor-logo.png'
-        alt='Logo Star Wars Andor'
+        src={movie.logo}
+        alt={movie.nombre}
       />
-      <span>2022 • 1 temporada</span>
-      <span>Ciencia ficción, Espionaje, Acción y Aventura</span>
+      <span>{movie.año} • {movie.duracion}</span>
+      <span>{movie.genero}</span>
       <div className='botones'>
         <button className='boton play '>
-          <img src='./images/play-button.svg' alt='Icono Play' />
+          <img src='../images/play-button.svg' alt='Icono Play' />
           VER AHORA
         </button>
         <button className='boton trailer'>TRÁILER</button>
@@ -23,15 +29,12 @@ function Details() {
         </div>
         <img
           className='icono groupwatch'
-          src='./images/group-icon.png'
+          src='../images/group-icon.png'
           alt='GroupWatch Icono'
         />
       </div>
       <p>
-        En una época llena de peligros, engaños e intrigas, Cassian Andor
-        descubrirá la diferencia que puede marcar en la lucha contra el tiránico
-        Imperio Galáctico. Se embarca en un camino que está destinado a
-        convertirlo en un héroe rebelde.
+        {movie.sinopsis}
       </p>
     </Main>
   );
@@ -43,8 +46,8 @@ const Main = styled.main`
   .background {
     content: '';
     position: fixed;
-    background: url(https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/6DB0D900B8934FEEAF8F71E3479331078EBB034A995ED016D93E319336309F3D/scale?width=1440&aspectRatio=1.78&format=jpeg)
-      50% / cover no-repeat;
+    background: ${props => `url(${props.background}) 50% / cover no-repeat`}; 
+
     background-position: unset;
     top: 0;
     left: 0;
@@ -151,10 +154,11 @@ const Main = styled.main`
   }
 
   span {
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: -0.1px;
     display: block;
     line-height: 1.5;
+    margin-top:0.4rem
   }
 
   p {
