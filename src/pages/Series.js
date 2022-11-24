@@ -8,7 +8,7 @@ import { Section } from '../components/Movies'
 function Peliculas() {
     const movies = useSelector((store) => store.movie.movies)
     const filteredMovies = movies.filter((movie) => movie.tipo === 'serie')
-    console.log(movies);
+
   return (
     <Wrapper>
         <Section>
