@@ -5,7 +5,7 @@ import Collections from '../components/Collections';
 import Movies from '../components/Movies';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import { useDispatch} from 'react-redux';
-import { setMovies, setIsLoading } from '../features/movie/movieSlice';
+import { setMovies, setIsLoading, setFeatured } from '../features/movie/movieSlice';
 
 function Home() {
   const dispatch = useDispatch();
@@ -23,6 +23,8 @@ function Home() {
         }
         movieArray.push(movie);
       });
+      const featuredArray = movieArray.filter((movie) => movie.featured === 'si')
+      dispatch(setFeatured(featuredArray));
       dispatch(setMovies(movieArray));
       dispatch(setIsLoading(false))
     };

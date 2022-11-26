@@ -4,8 +4,12 @@ import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function Carousel() {
+  const featuredMovies = useSelector((store) => store.movie.featured);
+
   let settings = {
     infinite: true,
     autoplay: true,
@@ -17,73 +21,21 @@ function Carousel() {
 
   return (
     <ImgCarousel {...settings}>
-      <div>
-        <img
-          className='slide-img'
-          src='./images/swiper/andor-grande.jpg'
-          alt='Portada Andor'
-        />
-        <img
-          className='slide-logo'
-          src='./images/swiper/andor-logo.png'
-          alt='Logo Andor'
-        />
-      </div>
-      <div>
-        <img
-          className='slide-img'
-          src='./images/swiper/the-spectacular-spiderman-grande.jpg'
-          alt='Portada The Spectacular Spiderman'
-        />
-        <img
-          className='slide-logo'
-          src='./images/swiper/the-spectacular-spiderman-logo.png'
-          alt='Logo The Spectacular Spiderman'
-        />
-      </div>
-      <div>
-        <img
-          className='slide-img'
-          src='./images/swiper/leyendas-grande.jpg'
-          alt='Portada Leyendas'
-        />
-        <img
-          className='slide-logo'
-          src='./images/swiper/leyendas-logo.png'
-          alt='Logo Leyendas'
-        />
-      </div>
-      <div>
-        <img
-          className='slide-img'
-          src='./images/swiper/deadpool-grande.jpg'
-          alt='Portada Deadpool'
-        />
-        <img
-          className='slide-logo'
-          src='./images/swiper/deadpool-logo.png'
-          alt='Logo Deadpool'
-        />
-      </div>
-      <div>
-        <img
-          className='slide-img'
-          src='./images/swiper/pantera-negra-grande.jpg'
-          alt='Portada Pantera Negra'
-        />
-        <img
-          className='slide-logo'
-          src='./images/swiper/pantera-negra-logo.png'
-          alt='Logo Pantera Negra'
-        />
-      </div>
+      {featuredMovies.map((movie) => {
+        return(
+        <Link key={movie.id} to={`/details/${movie.id}`}>
+          <div>
+            <img className='slide-img' src={movie.sliderImg} alt={movie.nombre} />
+            <img className='slide-logo' src={movie.sliderLogo} alt={`${movie.nombre} Logo`} />
+          </div>
+        </Link>);
+      })}
     </ImgCarousel>
   );
 }
 export default Carousel;
 
 const ImgCarousel = styled(Slider)`
-
   margin-top: 1.3rem;
   cursor: pointer;
 
@@ -108,8 +60,8 @@ const ImgCarousel = styled(Slider)`
   .slick-prev:before {
     content: '';
   }
-  .slick-prev{
-    background-image: url(./images/swiper/chevron-left-solid.svg);
+  .slick-prev {
+    background-image: url(../images/swiper/chevron-left-solid.svg);
     background-repeat: no-repeat;
     background-position: right;
     width: 90px;
@@ -119,11 +71,11 @@ const ImgCarousel = styled(Slider)`
     left: -74px;
   }
 
-  .slick-next:before{
-    content:"";
+  .slick-next:before {
+    content: '';
   }
-  .slick-next{
-    background-image: url(./images/swiper/chevron-right-solid.svg);
+  .slick-next {
+    background-image: url(../images/swiper/chevron-right-solid.svg);
     background-repeat: no-repeat;
     background-position: left;
     width: 90px;
@@ -134,8 +86,8 @@ const ImgCarousel = styled(Slider)`
   }
   div {
     position: relative;
-    &:focus-visible{
-      outline:none;
+    &:focus-visible {
+      outline: none;
     }
   }
 

@@ -6,42 +6,38 @@ function Navbar() {
   return (
     <>
       <Header>
-        <Logo src='./images/logo.svg' alt='Disney Logo' />
-        <Nav>
-          <ul>
+        <Logo src='../images/logo.svg' alt='Disney Logo' />
+        <Nav className='nav'>
+          <ul className='lista'>
             <Link to={'/'}>
               <li>
-                <img src='./images/home-icon.svg' alt='Icono Home' />
-                <span>Inicio</span>
+                <img src='../images/home-icon.svg' alt='Icono Home' />
+                <span className='texto'>Inicio</span>
               </li>
             </Link>
             <li>
-              <img src='./images/search-icon.svg' alt='Icono Búsqueda' />
-              <span>Búsqueda</span>
+              <img src='../images/search-icon.svg' alt='Icono Búsqueda' />
+              <span className='texto'>Búsqueda</span>
             </li>
             <li>
-              <img src='./images/watchlist-icon.svg' alt='Icono Home' />
-              <span>Mi Lista</span>
-            </li>
-            <li>
-              <img src='./images/original-icon.svg' alt='Icono Home' />
-              <span>Originales</span>
+              <img src='../images/watchlist-icon.svg' alt='Icono Home' />
+              <span className='texto'>Mi Lista</span>
             </li>
             <Link to={'/peliculas'}>
               <li>
-                <img src='./images/movies-icon.svg' alt='Icono Home' />
-                <span>Películas</span>
+                <img src='../images/movies-icon.svg' alt='Icono Home' />
+                <span className='texto'>Películas</span>
               </li>
             </Link>
             <Link to={'/series'}>
               <li>
-                <img src='./images/series-icon.svg' alt='Icono Home' />
-                <span>Series</span>
+                <img src='../images/series-icon.svg' alt='Icono Home' />
+                <span className='texto'>Series</span>
               </li>
             </Link>
           </ul>
         </Nav>
-        <ProfileImg src='./images/cars.png' alt='' />
+        <ProfileImg src='../images/cars.png' alt='' />
       </Header>
       <Outlet />
     </>
@@ -53,6 +49,9 @@ const Header = styled.header`
   align-items: center;
   height: 72px;
   padding: 0 36px;
+  @media screen and (max-width: 450px) {
+    padding: 0;
+  }
 `;
 
 const Logo = styled.img`
@@ -61,8 +60,8 @@ const Logo = styled.img`
 `;
 
 const Nav = styled.nav`
-  margin-left: 2rem;
   ul {
+    margin-left: 2rem;
     display: flex;
     list-style-type: none;
     li {
@@ -103,6 +102,24 @@ const Nav = styled.nav`
       }
     }
   }
+  @media screen and (max-width: 450px){
+    .lista{
+      flex-wrap: wrap;
+      row-gap: 0.5rem;
+    }
+  }
+  @media screen and (max-width: 600px){
+    .lista{
+      margin-left: 0rem;
+    }
+  }
+  @media screen and (max-width: 890px){
+    .texto{
+      display: none;
+    }
+  }
+
+
 `;
 
 const ProfileImg = styled.img`

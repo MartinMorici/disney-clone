@@ -87,6 +87,24 @@ export const Section = styled.section`
     place-content: center;
     padding: 3rem;
   }
+
+  @media screen and (max-width: 1100px){
+    .peliculas{
+      grid-template-columns: repeat(3,1fr);
+    }
+  }
+  @media screen and (max-width: 768px){
+    .peliculas{
+      grid-template-columns: repeat(2,1fr);
+    }
+  }
+  @media screen and (max-width: 600px){
+    .peliculas{
+      grid-template-columns: repeat(1,1fr);
+    }
+  }
+
+
 `;
 
 export default Movies;

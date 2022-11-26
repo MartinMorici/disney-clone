@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";    // 1- importamos createSlice
 
 const initialState = {
     movies: [],
+    featured: [],
     isLoading: false
 }
 
@@ -14,10 +15,13 @@ const movieSlice = createSlice({
         },
         setIsLoading: (state,action) => {
             state.isLoading = action.payload
+        },
+        setFeatured: (state,action) => {
+            state.featured = action.payload
         }
     }
 })
 
 export default movieSlice.reducer
-export const { setMovies, setIsLoading } = movieSlice.actions  
+export const { setMovies, setIsLoading, setFeatured } = movieSlice.actions  
                                   

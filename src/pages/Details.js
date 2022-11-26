@@ -10,7 +10,10 @@ function Details() {
 
   return (
     <Main background={background}>
-      <div className='background'></div>
+      <div className='background'>
+      <div className="filter"></div>
+      </div>
+      
       <img
         className='logo'
         src={movie.logo}
@@ -24,8 +27,8 @@ function Details() {
           VER AHORA
         </button>
         <button className='boton trailer'>TRÁILER</button>
-        <div className='icono add'>
-          <span>+</span>
+        <div className='icono'>
+          <span className='plus'>+</span>
         </div>
         <img
           className='icono groupwatch'
@@ -56,15 +59,20 @@ const Main = styled.main`
     z-index: -1;
     opacity: 0.4;
   }
-  .filter {
-    background-image: radial-gradient(
-      farthest-side at 73% 21%,
-      transparent,
-      rgb(26, 29, 41)
-    );
-    position: absolute;
-    inset: 0px;
-    z-index: -1;
+  @media screen and (max-width: 768px){
+    .background{
+      background-size: 100vw
+    }
+    .filter {
+      background-image: radial-gradient(
+        farthest-side at 73% 21%,
+        transparent,
+        rgb(26, 29, 41)
+      );
+      position: absolute;
+      inset: 0px;
+      z-index: -1;
+    }
   }
   .logo {
     margin-top: 3.5rem;
@@ -84,9 +92,12 @@ const Main = styled.main`
     border: 2px solid white;
     background-color: rgba(0, 0, 0, 0.6);
     transition: all 0.2s ease-in-out;
-    span {
+    .plus {
       font-size: 30px;
       color: white;
+      margin-top: 0;
+      font-family: auto;
+      font-weight: 800;
     }
 
     &:hover {
@@ -94,10 +105,10 @@ const Main = styled.main`
     }
   }
 
-  .add {
-    font-family: auto;
-    font-weight: 800;
-  }
+
+
+
+
 
   .groupwatch {
     padding: 2px;
