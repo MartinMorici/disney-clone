@@ -9,18 +9,23 @@ function Movies() {
     <Section>
       <div>
         <h4>Recomendaciones para ti</h4>
-        <div className='peliculas'>
-          {movies.slice(0, 10).map((movie) => {
-            return (
-              <Link key={movie.id} to={`/details/${movie.id}`}>
-                <img draggable='false' src={movie.thumbnail} alt={movie.name} />
-              </Link>
-            );
-          })}
-        </div>
-        {isLoading && (
+        {isLoading ? (
           <div className='center'>
             <span className='loader'></span>
+          </div>
+        ) : (
+          <div className='peliculas'>
+            {movies.slice(0, 10).map((movie) => {
+              return (
+                <Link key={movie.id} to={`/details/${movie.id}`}>
+                  <img
+                    draggable='false'
+                    src={movie.thumbnail}
+                    alt={movie.name}
+                  />
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>
@@ -88,23 +93,21 @@ export const Section = styled.section`
     padding: 3rem;
   }
 
-  @media screen and (max-width: 1100px){
-    .peliculas{
-      grid-template-columns: repeat(3,1fr);
+  @media screen and (max-width: 1100px) {
+    .peliculas {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
-  @media screen and (max-width: 768px){
-    .peliculas{
-      grid-template-columns: repeat(2,1fr);
+  @media screen and (max-width: 768px) {
+    .peliculas {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
-  @media screen and (max-width: 600px){
-    .peliculas{
-      grid-template-columns: repeat(1,1fr);
+  @media screen and (max-width: 600px) {
+    .peliculas {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
-
-
 `;
 
 export default Movies;

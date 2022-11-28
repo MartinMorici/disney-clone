@@ -1,43 +1,51 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-
 function Navbar() {
+  const user = useSelector((store) => store.user);
+
   return (
     <>
       <Header>
-        <Logo src='../images/logo.svg' alt='Disney Logo' />
-        <Nav className='nav'>
-          <ul className='lista'>
-            <Link to={'/'}>
-              <li>
-                <img src='../images/home-icon.svg' alt='Icono Home' />
-                <span className='texto'>Inicio</span>
-              </li>
-            </Link>
-            <li>
-              <img src='../images/search-icon.svg' alt='Icono Búsqueda' />
-              <span className='texto'>Búsqueda</span>
-            </li>
-            <li>
-              <img src='../images/watchlist-icon.svg' alt='Icono Home' />
-              <span className='texto'>Mi Lista</span>
-            </li>
-            <Link to={'/peliculas'}>
-              <li>
-                <img src='../images/movies-icon.svg' alt='Icono Home' />
-                <span className='texto'>Películas</span>
-              </li>
-            </Link>
-            <Link to={'/series'}>
-              <li>
-                <img src='../images/series-icon.svg' alt='Icono Home' />
-                <span className='texto'>Series</span>
-              </li>
-            </Link>
-          </ul>
-        </Nav>
-        <ProfileImg src='../images/cars.png' alt='' />
+        {user.email && user.name ? (
+          <>
+            <Logo src='../images/logo.svg' alt='Disney Logo' />
+            <Nav className='nav'>
+              <ul className='lista'>
+                <Link to={'/'}>
+                  <li>
+                    <img src='../images/home-icon.svg' alt='Icono Home' />
+                    <span className='texto'>Inicio</span>
+                  </li>
+                </Link>
+                <li>
+                  <img src='../images/search-icon.svg' alt='Icono Búsqueda' />
+                  <span className='texto'>Búsqueda</span>
+                </li>
+                <li>
+                  <img src='../images/watchlist-icon.svg' alt='Icono Home' />
+                  <span className='texto'>Mi Lista</span>
+                </li>
+                <Link to={'/peliculas'}>
+                  <li>
+                    <img src='../images/movies-icon.svg' alt='Icono Home' />
+                    <span className='texto'>Películas</span>
+                  </li>
+                </Link>
+                <Link to={'/series'}>
+                  <li>
+                    <img src='../images/series-icon.svg' alt='Icono Home' />
+                    <span className='texto'>Series</span>
+                  </li>
+                </Link>
+              </ul>
+            </Nav>
+            <ProfileImg src='../images/cars.png' alt='' />
+          </>
+        ) : (
+          <BotonInicio>Iniciar Sesión</BotonInicio>
+        )}
       </Header>
       <Outlet />
     </>
@@ -102,24 +110,54 @@ const Nav = styled.nav`
       }
     }
   }
-  @media screen and (max-width: 450px){
-    .lista{
+  @media screen and (max-width: 450px) {
+    .lista {
       flex-wrap: wrap;
       row-gap: 0.5rem;
     }
   }
-  @media screen and (max-width: 600px){
-    .lista{
+  @media screen and (max-width: 600px) {
+    .lista {
       margin-left: 0rem;
     }
   }
-  @media screen and (max-width: 890px){
-    .texto{
+  @media screen and (max-width: 890px) {
+    .texto {
       display: none;
     }
   }
+`;
+const BotonInicio = styled.div`
+  margin-left: auto;
+  padding: 0px 16px;
+  height: 50px;
+  max-width: 260px;
+  /* max-width: none; */
+  border: 1px solid silver;
+  color: #f9f9f9;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease 0s;
+  cursor: pointer;
 
+  &:hover {
+    color: black;
+    background-color: white;
+    transition: all 0.2s ease 0s;
+  }
 
+  &:active {
+    opacity: 0.7;
+    transform: scale(0.97);
+    transition: 0s;
+  }
 `;
 
 const ProfileImg = styled.img`
