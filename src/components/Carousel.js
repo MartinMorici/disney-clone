@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function Carousel() {
   const featuredMovies = useSelector((store) => store.movie.featured);

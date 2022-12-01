@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
+import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from '../firebase';
 import styled from 'styled-components';
 function Navbar() {
   const user = useSelector((store) => store.user);
 
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth,provider)
+  }
+
+  useEffect(() => {
+    const logout = onAuthStateChanged(auth, (user) => {
+      console.log(user);
+    })
+  }, [])
+  
+ 
   return (
     <>
       <Header>
-        {user.email && user.name ? (
+        {/* {user.email && user.name ? ( */}
           <>
             <Logo src='../images/logo.svg' alt='Disney Logo' />
             <Nav className='nav'>
@@ -43,9 +57,9 @@ function Navbar() {
             </Nav>
             <ProfileImg src='../images/cars.png' alt='' />
           </>
-        ) : (
-          <BotonInicio>Iniciar Sesión</BotonInicio>
-        )}
+        {/* ) : (
+          <BotonInicio onClick={googleSignIn} >Iniciar Sesión</BotonInicio>
+        )} */}
       </Header>
       <Outlet />
     </>

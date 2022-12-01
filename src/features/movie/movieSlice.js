@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";    // 1- importamos createSlice
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     movies: [],
