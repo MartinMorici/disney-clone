@@ -7,17 +7,55 @@ import Login from './pages/Login';
 import Peliculas from './pages/Peliculas';
 import Series from './pages/Series';
 import './App.css';
+import ProtectedRoute from './components/ProtectedRoute';
+import Watchlist from './pages/Watchlist';
 function App() {
   return (
     <div className='App'>
       <BrowserRouter>
         <Routes>
           <Route element={<Navbar />}>
-            <Route index element={<Home />} />
-            <Route path='details/:movieId' element={<Details />} />
-            <Route path='peliculas' element={<Peliculas />} />
-            <Route path='series' element={<Series />} />
-            <Route path='login' element={<Login/>}/>
+            <Route
+              index
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='details/:movieId'
+              element={
+                <ProtectedRoute>
+                  <Details />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='peliculas'
+              element={
+                <ProtectedRoute>
+                  <Peliculas />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='series'
+              element={
+                <ProtectedRoute>
+                  <Series />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='watchlist'
+              element={
+                <ProtectedRoute>
+                  <Watchlist />
+                </ProtectedRoute>
+              }
+            />
+            <Route path='login' element={<Login />} />
           </Route>
         </Routes>
       </BrowserRouter>

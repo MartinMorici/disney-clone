@@ -1,25 +1,31 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import {useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import { addRemoveToWatchlist } from '../features/movie/movieSlice';
+
 function Details() {
+  const dispatch = useDispatch();
   let movies = useSelector((store) => store.movie.movies);
-  const {movieId} = useParams()
-  const movie = movies.find((movie) => movie.id === movieId)
-  const {background} = movie;
+  let watchlist = useSelector((store) => store.movie.watchlist);
+  const { movieId } = useParams();
+  const movie = movies.find((movie) => movie.id === movieId);
+  const { background } = movie;
+
+  const watchlistHandler = () => {
+    dispatch(addRemoveToWatchlist(movieId));
+  };
 
   return (
     <Main background={background}>
       <div className='background'>
-      <div className="filter"></div>
+        <div className='filter'></div>
       </div>
-      
-      <img
-        className='logo'
-        src={movie.logo}
-        alt={movie.nombre}
-      />
-      <span>{movie.año} • {movie.duracion}</span>
+
+      <img className='logo' src={movie.logo} alt={movie.nombre} />
+      <span>
+        {movie.año} • {movie.duracion}
+      </span>
       <span>{movie.genero}</span>
       <div className='botones'>
         <button className='boton play '>
@@ -27,8 +33,12 @@ function Details() {
           VER AHORA
         </button>
         <button className='boton trailer'>TRÁILER</button>
-        <div className='icono'>
-          <span className='plus'>+</span>
+        <div className='icono' onClick={watchlistHandler}>
+          {watchlist.some((film) => film.id === movie.id) ? (
+            <span className='plus quitar'>-</span>
+          ) : (
+            <span className='plus'>+</span>
+          )}
         </div>
         <img
           className='icono groupwatch'
@@ -36,9 +46,7 @@ function Details() {
           alt='GroupWatch Icono'
         />
       </div>
-      <p>
-        {movie.sinopsis}
-      </p>
+      <p>{movie.sinopsis}</p>
     </Main>
   );
 }
@@ -49,7 +57,7 @@ const Main = styled.main`
   .background {
     content: '';
     position: fixed;
-    background: ${props => `url(${props.background}) 50% / cover no-repeat`}; 
+    background: ${(props) => `url(${props.background}) 50% / cover no-repeat`};
 
     background-position: unset;
     top: 0;
@@ -59,9 +67,9 @@ const Main = styled.main`
     z-index: -1;
     opacity: 0.4;
   }
-  @media screen and (max-width: 768px){
-    .background{
-      background-size: 100vw
+  @media screen and (max-width: 768px) {
+    .background {
+      background-size: 100vw;
     }
     .filter {
       background-image: radial-gradient(
@@ -85,6 +93,7 @@ const Main = styled.main`
     height: 44px;
     width: 44px;
     display: flex;
+    user-select: none;
     align-items: center;
     justify-content: center;
     margin-left: 16px;
@@ -99,16 +108,15 @@ const Main = styled.main`
       font-family: auto;
       font-weight: 800;
     }
+    .quitar{
+      position: relative;
+      top: -3px;
+    }
 
     &:hover {
       background-color: #a7aba8;
     }
   }
-
-
-
-
-
 
   .groupwatch {
     padding: 2px;
@@ -169,7 +177,7 @@ const Main = styled.main`
     letter-spacing: -0.1px;
     display: block;
     line-height: 1.5;
-    margin-top:0.4rem
+    margin-top: 0.4rem;
   }
 
   p {

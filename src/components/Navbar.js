@@ -1,28 +1,49 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Link, Outlet } from 'react-router-dom';
-import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from '../firebase';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import {
+  GoogleAuthProvider,
+  signInWithRedirect,
+  signOut,
+  onAuthStateChanged,
+} from 'firebase/auth';
+import { auth } from '../firebase';
+import { setUserName, setUserPhoto } from '../features/user/userSlice';
+
 function Navbar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((store) => store.user);
 
-  const googleSignIn = () => {
+  const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth,provider)
-  }
+    signInWithRedirect(auth, provider);
+  };
+
+  const googleSignOut = () => {
+    signOut(auth).then(() => {
+      dispatch(setUserName(null));
+      dispatch(setUserPhoto(null));
+    });
+  };
 
   useEffect(() => {
-    const logout = onAuthStateChanged(auth, (user) => {
-      console.log(user);
-    })
-  }, [])
-  
- 
+    const redirect = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(setUserName(user.displayName));
+        dispatch(setUserPhoto(user.photoURL));
+        navigate('/');
+      }
+    });
+
+    return redirect();
+  }, []);
+
   return (
     <>
       <Header>
-        {/* {user.email && user.name ? ( */}
+        {user.name ? (
           <>
             <Logo src='../images/logo.svg' alt='Disney Logo' />
             <Nav className='nav'>
@@ -37,10 +58,12 @@ function Navbar() {
                   <img src='../images/search-icon.svg' alt='Icono Búsqueda' />
                   <span className='texto'>Búsqueda</span>
                 </li>
-                <li>
-                  <img src='../images/watchlist-icon.svg' alt='Icono Home' />
-                  <span className='texto'>Mi Lista</span>
-                </li>
+                <Link to={'/watchlist'}>
+                  <li>
+                    <img src='../images/watchlist-icon.svg' alt='Icono Home' />
+                    <span className='texto'>Mi Lista</span>
+                  </li>
+                </Link>
                 <Link to={'/peliculas'}>
                   <li>
                     <img src='../images/movies-icon.svg' alt='Icono Home' />
@@ -55,11 +78,14 @@ function Navbar() {
                 </Link>
               </ul>
             </Nav>
-            <ProfileImg src='../images/cars.png' alt='' />
+            <Profile>
+              <span onClick={googleSignOut}>Cerrar Sesión</span>
+              <ProfileImg src={user.photo} alt='' />
+            </Profile>
           </>
-        {/* ) : (
-          <BotonInicio onClick={googleSignIn} >Iniciar Sesión</BotonInicio>
-        )} */}
+        ) : (
+          <BotonInicio onClick={googleSignIn}>Iniciar Sesión</BotonInicio>
+        )}
       </Header>
       <Outlet />
     </>
@@ -73,6 +99,21 @@ const Header = styled.header`
   padding: 0 36px;
   @media screen and (max-width: 450px) {
     padding: 0;
+  }
+`;
+
+const Profile = styled.div`
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  span {
+    cursor: pointer;
+    :hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -160,6 +201,7 @@ const BotonInicio = styled.div`
   align-items: center;
   transition: all 0.2s ease 0s;
   cursor: pointer;
+  user-select: none;
 
   &:hover {
     color: black;
