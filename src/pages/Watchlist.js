@@ -7,9 +7,10 @@ import { addRemoveToWatchlist } from '../features/movie/movieSlice';
 function Watchlist() {
   const dispatch = useDispatch();
   const watchlist = useSelector((store) => store.movie.watchlist);
-  // const watchlistHandler = () => {
-  //   dispatch(addRemoveToWatchlist(movie.id));
-  // };
+
+  const updateWatchlist = (event,movieId) => {
+    dispatch(addRemoveToWatchlist(movieId))
+  }
 
   return (
     <Wrapper>
@@ -25,8 +26,8 @@ function Watchlist() {
                     src={movie.thumbnail}
                     alt={movie.name}
                   />
-                  <Boton>
-                    <div className='icono' onClick={() => { dispatch(addRemoveToWatchlist(movie.id))}} >
+                  <Boton onClick={(e) => e.preventDefault()}>
+                    <div className='icono' onClick={(e) => { updateWatchlist(e,movie.id)}} >
                       {watchlist.some((film) => film.id === movie.id) ? (
                         <span className='plus quitar'>-</span>
                       ) : (
@@ -40,7 +41,7 @@ function Watchlist() {
           </div>
         </Section>
       ) : (
-        <Mensaje>No agregaste nada a tu Watchlist!</Mensaje>
+        <Mensaje>Aún no tienes ningun elemento agregado! Comienza a agregar series y películas.</Mensaje>
       )}
     </Wrapper>
   );
@@ -50,10 +51,11 @@ const Boton = styled.div`
   position: absolute;
   bottom: 0.8rem;
   left: -0.5rem;
+
   .icono {
     cursor: pointer;
-    width: 44px;
-    height: 44px;
+    width: 35px;
+    height: 35px;
     user-select: none;
     display: flex;
     align-items: center;
@@ -78,6 +80,11 @@ const Boton = styled.div`
     &:hover {
       background-color: #a7aba8;
     }
+    &:hover .image {
+        outline: 4px solid rgba(255, 255, 255, 0.4);
+        outline-offset: -4px;
+        transform: scale(1.05);
+      }
   }
 `;
 const Wrapper = styled.div`

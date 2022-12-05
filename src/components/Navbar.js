@@ -54,10 +54,12 @@ function Navbar() {
                     <span className='texto'>Inicio</span>
                   </li>
                 </Link>
-                <li>
-                  <img src='../images/search-icon.svg' alt='Icono Búsqueda' />
-                  <span className='texto'>Búsqueda</span>
-                </li>
+                <Link to={'/busqueda'}>
+                  <li>
+                    <img src='../images/search-icon.svg' alt='Icono Búsqueda' />
+                    <span className='texto'>Búsqueda</span>
+                  </li>
+                </Link>
                 <Link to={'/watchlist'}>
                   <li>
                     <img src='../images/watchlist-icon.svg' alt='Icono Home' />
@@ -99,6 +101,20 @@ const Header = styled.header`
   padding: 0 36px;
   @media screen and (max-width: 450px) {
     padding: 0;
+  }
+  @media screen and (max-width: 680px) {
+    flex-direction: column;
+    row-gap: 1rem;
+    height: auto;
+    margin-bottom: 1rem;
+
+    div{
+      margin-left: 0;
+    }
+    .lista{
+      margin: 0;
+      justify-content: center;
+    }
   }
 `;
 
@@ -176,7 +192,7 @@ const Nav = styled.nav`
       margin-left: 0rem;
     }
   }
-  @media screen and (max-width: 890px) {
+  @media screen and (max-width: 1025px) {
     .texto {
       display: none;
     }
@@ -213,6 +229,10 @@ const BotonInicio = styled.div`
     opacity: 0.7;
     transform: scale(0.97);
     transition: 0s;
+  }
+  @media screen and (max-width: 600px) {
+    margin-top: 2rem;
+
   }
 `;
 

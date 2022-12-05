@@ -6,9 +6,11 @@ import Details from './pages/Details';
 import Login from './pages/Login';
 import Peliculas from './pages/Peliculas';
 import Series from './pages/Series';
+import Watchlist from './pages/Watchlist';
+import Busqueda from './pages/Busqueda';
 import './App.css';
 import ProtectedRoute from './components/ProtectedRoute';
-import Watchlist from './pages/Watchlist';
+
 function App() {
   return (
     <div className='App'>
@@ -28,6 +30,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Details />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='busqueda'
+              element={
+                <ProtectedRoute>
+                  <Busqueda></Busqueda>
                 </ProtectedRoute>
               }
             />
