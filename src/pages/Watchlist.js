@@ -99,6 +99,12 @@ const Mensaje = styled.div`
   display: grid;
   place-content: center;
   font-size: 20px;
+  @media (max-width:600px){
+    padding: 0rem;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 40%;
+  }
 `;
 
 export default Watchlist;

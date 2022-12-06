@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Details from './pages/Details';
@@ -11,17 +11,20 @@ import Busqueda from './pages/Busqueda';
 import './App.css';
 import ProtectedRoute from './components/ProtectedRoute';
 
+
 function App() {
+
   return (
     <div className='App'>
       <BrowserRouter>
         <Routes>
           <Route element={<Navbar />}>
             <Route
+              path='/'
               index
               element={
                 <ProtectedRoute>
-                  <Home />
+                  <Home/>
                 </ProtectedRoute>
               }
             />
@@ -65,7 +68,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path='login' element={<Login />} />
+            <Route path='login' element={<Login />} /> 
+
           </Route>
         </Routes>
       </BrowserRouter>

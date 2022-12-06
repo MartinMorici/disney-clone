@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import {
   GoogleAuthProvider,
-  signInWithRedirect,
-  signOut,
-  onAuthStateChanged,
+  signInWithPopup,
+  signOut
 } from 'firebase/auth';
 import { auth } from '../firebase';
 import { setUserName, setUserPhoto } from '../features/user/userSlice';
@@ -18,7 +17,12 @@ function Navbar() {
 
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
+    signInWithPopup(auth, provider)
+    .then(result => {
+      dispatch(setUserName(result.user.displayName));
+      dispatch(setUserPhoto(result.user.photoURL));
+      navigate("/", {replace: true})
+    });
   };
 
   const googleSignOut = () => {
@@ -28,17 +32,7 @@ function Navbar() {
     });
   };
 
-  useEffect(() => {
-    const redirect = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        dispatch(setUserName(user.displayName));
-        dispatch(setUserPhoto(user.photoURL));
-        navigate('/');
-      }
-    });
 
-    return redirect();
-  }, []);
 
   return (
     <>

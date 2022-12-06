@@ -139,4 +139,16 @@ const ImgCarousel = styled(Slider)`
     opacity: 1;
     transition: opacity 300ms, outline 200ms;
   }
+
+  @media (max-width:600px){
+    .slide-img{
+      height: 200px;
+      object-fit: cover;
+    }
+    .slide-logo{
+      height: 100px;
+      width: 100px;
+      object-fit: contain;
+    }
+  }
 `;
