@@ -5,7 +5,7 @@ import { store } from './store';
 import {PersistGate} from 'redux-persist/integration/react'
 import {persistStore} from 'redux-persist'
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
 import './index.css';
 
 
@@ -25,5 +25,3 @@ root.render(
   </React.StrictMode>
 );
 
-
-reportWebVitals();

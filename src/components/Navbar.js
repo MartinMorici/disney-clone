@@ -84,6 +84,7 @@ function Navbar() {
         )}
       </Header>
       <Outlet />
+      <Footer>Desarrollado por <a href="https://www.linkedin.com/in/martinmorici/" target="_blank" rel="noreferrer">Martín Morici</a></Footer>
     </>
   );
 }
@@ -239,5 +240,14 @@ const ProfileImg = styled.img`
   background-color: #48291c;
   margin-right: 1rem;
 `;
+
+const Footer = styled.footer`
+  text-align: center;
+  padding: 4rem 0rem;
+
+  a{
+    text-decoration: underline;
+}
+`
 
 export default Navbar;
