@@ -13,15 +13,15 @@ function Login() {
       <div className='img-bg-login'></div>
       <section>
         <div className='hero'>
-          <img className='logo' src='./images/logo.svg' alt='' />
+          <img className='logo' src='./images/logo.svg' alt='Logo' />
           <h1>Tus historias favoritas, todas en un mismo lugar.</h1>
           <div className='suscribite'>
             <div className='col'>
-              <img src='./images/star-disney-combo.png' alt='' />
+              <img src='./images/star-disney-combo.png' alt='Star Disney Combo' />
               <button className='boton'>SUSCRIBITE AHORA</button>
             </div>
             <div className='col'>
-              <img src='./images/star-disney-starz.png' alt='' />
+              <img src='./images/star-disney-starz.png' alt='Star Disney Starz Combo' />
               <button className='boton'>SUSCRIBITE AHORA</button>
             </div>
           </div>
